@@ -40,4 +40,17 @@ void display_on_LCD(uint8_t num){
 	lcd_putstring(str); // put string on LCD
 }
 
+void init_LEDS(void){
+	RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Enable Port B
+	GPIOB->MODER |= GPIO_MODER_MODER0_0|
+					GPIO_MODER_MODER1_0|
+					GPIO_MODER_MODER2_0|
+					GPIO_MODER_MODER3_0|
+					GPIO_MODER_MODER4_0|
+					GPIO_MODER_MODER5_0|
+					GPIO_MODER_MODER6_0|
+					GPIO_MODER_MODER7_0; // Make it input mode
+
+}
+
 
