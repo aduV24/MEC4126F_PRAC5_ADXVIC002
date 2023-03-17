@@ -20,6 +20,7 @@ void main(void);                                                   //COMPULSORY
 void display_on_LCD(uint8_t num);
 void init_LEDS(void);
 void display_on_LEDs(uint8_t number);
+void init_switches(void);
 
 void main(void)
 {
@@ -51,10 +52,16 @@ void init_LEDS(void){
 					GPIO_MODER_MODER4_0|
 					GPIO_MODER_MODER5_0|
 					GPIO_MODER_MODER6_0|
-					GPIO_MODER_MODER7_0; // Make it input mode
+					GPIO_MODER_MODER7_0; // Make it ouput mode
 
 }
 void display_on_LEDs(uint8_t number){
 	GPIOB->ODR = number;
+}
+
+void init_switches(void){
+	RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Enable Port A
+	GPIOB->MODER &= ~GPIO_MODER_MODER0;// Input mode
+	GPIOB->MODER &= ~GPIO_MODER_MODER1; // Set to input mode
 }
 
