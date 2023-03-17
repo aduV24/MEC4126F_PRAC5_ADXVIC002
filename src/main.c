@@ -44,7 +44,7 @@ void display_on_LCD(uint8_t num){
 }
 
 void init_LEDS(void){
-	RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Enable Port B
+	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;	 // Enable Port B
 	GPIOB->MODER |= GPIO_MODER_MODER0_0|
 					GPIO_MODER_MODER1_0|
 					GPIO_MODER_MODER2_0|
@@ -61,7 +61,10 @@ void display_on_LEDs(uint8_t number){
 
 void init_switches(void){
 	RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Enable Port A
-	GPIOB->MODER &= ~GPIO_MODER_MODER0;// Input mode
-	GPIOB->MODER &= ~GPIO_MODER_MODER1; // Set to input mode
+	GPIOB->MODER &= ~GPIO_MODER_MODER1;// Input mode for SW1
+	GPIOB->MODER &= ~GPIO_MODER_MODER2; // Set to input mode for SW2
+	GPIOB->PUPDR |= GPIO_PUPDR_PUPDR1_0; // Enable PUPDR for pin1
+	GPIOB->PUPDR |= GPIO_PUPDR_PUPDR2_0; // Enable PUPDR for pin2
+
 }
 
