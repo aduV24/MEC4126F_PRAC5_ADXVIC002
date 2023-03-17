@@ -18,11 +18,13 @@ void main(void);                                                   //COMPULSORY
 
 // MAIN FUNCTION -------------------------------------------------------------|
 void display_on_LCD(uint8_t num);
+void init_LEDS(void);
+void display_on_LEDs(uint8_t number);
 
 void main(void)
 {
 	init_LCD();
-	display_on_LCD(113);
+	init_LEDS();
 
 	while(1)
 	{
@@ -52,5 +54,7 @@ void init_LEDS(void){
 					GPIO_MODER_MODER7_0; // Make it input mode
 
 }
-
+void display_on_LEDs(uint8_t number){
+	GPIOB->ODR = number;
+}
 
