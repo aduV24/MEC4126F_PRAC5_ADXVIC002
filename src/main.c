@@ -29,6 +29,48 @@ void main(void);                                                   //COMPULSORY
 
 void main(void)
 {
+	init_LCD();
+	init_LEDS();
+	init_switches();
+	init_external_interrupts();
+
+
+	while(1)
+	{
+		if((SW3_press_count%2) != 0)
+				{
+
+					// Check for push button1
+					if(SW1Pressed)
+					{
+						if(count==0xFF); // check that count is not > 225
+						else{
+							count+=1;
+						}
+
+
+					}
+					// Check for push buttton2
+					else if(SW2Pressed){
+						count-=1;
+					}
+					// Display count on LED and LCD
+					display_on_LEDs(count);
+					display_on_LCD(count);
+					delay(70000);
+
+				}
+		else
+		{
+			count = 0;
+			lcd_command(CLEAR);
+			display_on_LEDs(count);
+		}
+
+
+
+
+	}
 
 }
 
